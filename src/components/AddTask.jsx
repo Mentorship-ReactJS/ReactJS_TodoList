@@ -1,16 +1,14 @@
 import { TextField } from "@mui/material";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const AddTask = ({ onAddTodoList }) => {
   const [title, setTitle] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     onAddTodoList(title);
     setTitle("");
-  };
-
-  console.log(title);
+  });
 
   return (
     <form onSubmit={handleSubmit}>
