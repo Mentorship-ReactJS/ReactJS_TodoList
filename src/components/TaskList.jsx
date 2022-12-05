@@ -2,11 +2,11 @@ import { Card } from "@mui/material";
 import React from "react";
 import Task from "./Task";
 
-const TaskList = ({ list }) => {
+const TaskList = ({ tasks }) => {
   return (
     <Card>
-      {list.map((ele) => (
-        <Task key={ele.id} title={ele.title} />
+      {tasks.map((task) => (
+        <Task key={task.id} title={task.title} />
       ))}
     </Card>
   );

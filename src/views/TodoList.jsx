@@ -13,7 +13,7 @@ const TodoList = () => {
   return (
     <Container maxWidth="sm">
       <AddTask />
-      <TaskList list={todoList} />
+      <TaskList tasks={todoList} />
     </Container>
   );
 };
