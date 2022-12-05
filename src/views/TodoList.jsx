@@ -1,8 +1,7 @@
 import { Container } from "@mui/material";
 import AddTask from "../components/AddTask";
 import TaskList from "../components/TaskList";
-import { useState } from "react";
-import { useCallback } from "react";
+import { useState, useCallback } from "react";  
 
 function TodoList() {
   const [todoList, setTodoList] = useState([]);
