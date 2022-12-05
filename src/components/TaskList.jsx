@@ -2,7 +2,8 @@ import { Card } from "@mui/material";
 import React from "react";
 import Task from "./Task";
 
-const TaskList = () => {
+
+function TaskList() {
   return (
     <Card>
       <Task />
@@ -11,6 +12,6 @@ const TaskList = () => {
       <Task />
     </Card>
   );
-};
+}
 
 export default TaskList;
