@@ -8,7 +8,7 @@ const AddTask = ({ onAddTodoList }) => {
     e.preventDefault();
     onAddTodoList(title);
     setTitle("");
-  });
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
