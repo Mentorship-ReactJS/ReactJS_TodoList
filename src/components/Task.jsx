@@ -1,9 +1,7 @@
 import {
   Box,
-  Card,
   CardContent,
   Checkbox,
-  Container,
   IconButton,
   Typography,
 } from "@mui/material";
@@ -12,7 +10,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 
-const Task = () => {
+const Task = ({ title }) => {
   const [done, setDone] = useState(false);
 
   return (
@@ -35,11 +33,11 @@ const Task = () => {
       >
         <Checkbox onChange={() => setDone(!done)} />
         <Typography variant="h5" sx={{ textTransform: "capitalize" }}>
-          hell be asdas
+          {title}
         </Typography>
       </Box>
       <Box>
-        <IconButton aria-label="Example" >
+        <IconButton aria-label="Example">
           <MoreVertIcon />
         </IconButton>
         <IconButton>
