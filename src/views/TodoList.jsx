@@ -4,19 +4,22 @@ import TaskList from "../components/TaskList";
 import { useState } from "react";
 import { useCallback } from "react";
 
-const TodoList = () => {
+function TodoList() {
   const [todoList, setTodoList] = useState([]);
 
-  const handleAddTodoList = useCallback((title) => {
-    setTodoList([
-      ...todoList,
-      {
-        id: todoList.length + 1,
-        title: title,
-        done: false,
-      },
-    ]);
-  }, [todoList]);
+  const handleAddTodoList = useCallback(
+    (title) => {
+      setTodoList([
+        ...todoList,
+        {
+          id: todoList.length + 1,
+          title: title,
+          done: false,
+        },
+      ]);
+    },
+    [todoList]
+  );
 
   return (
     <Container maxWidth="sm">
@@ -24,6 +27,6 @@ const TodoList = () => {
       <TaskList list={todoList} />
     </Container>
   );
-};
+}
 
 export default TodoList;
