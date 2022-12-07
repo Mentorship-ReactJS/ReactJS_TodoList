@@ -1,9 +1,7 @@
 import {
   Box,
-  Card,
   CardContent,
   Checkbox,
-  Container,
   IconButton,
   Typography,
 } from "@mui/material";
@@ -35,11 +33,11 @@ function Task() {
       >
         <Checkbox onChange={() => setDone(!done)} />
         <Typography variant="h5" sx={{ textTransform: "capitalize" }}>
-          hell be asdas
+          {title}
         </Typography>
       </Box>
       <Box>
-        <IconButton aria-label="Example" >
+        <IconButton aria-label="Example">
           <MoreVertIcon />
         </IconButton>
         <IconButton>

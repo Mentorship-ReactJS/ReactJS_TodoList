@@ -6,10 +6,9 @@ import Task from "./Task";
 function TaskList() {
   return (
     <Card>
-      <Task />
-      <Task />
-      <Task />
-      <Task />
+      {tasks.map((task) => (
+        <Task key={task.id} title={task.title} />
+      ))}
     </Card>
   );
 }
