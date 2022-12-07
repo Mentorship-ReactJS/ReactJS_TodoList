@@ -1,21 +1,31 @@
 import { Container } from "@mui/material";
 import AddTask from "../components/AddTask";
 import TaskList from "../components/TaskList";
-import { useState } from "react";
+import { useState, useCallback } from "react";  
 
-const TodoList = () => {
-  const [todoList, setTodoList] = useState([
-    { id: 1, title: "don nha", done: false },
-    { id: 2, title: "don giuong", done: false },
-    { id: 3, title: "quet nha", done: false },
-  ]);
+function TodoList() {
+  const [todoList, setTodoList] = useState([]);
+
+  const handleAddTodoList = useCallback(
+    (title) => {
+      setTodoList([
+        ...todoList,
+        {
+          id: todoList.length + 1,
+          title: title,
+          done: false,
+        },
+      ]);
+    },
+    [todoList]
+  );
 
   return (
     <Container maxWidth="sm">
-      <AddTask />
-      <TaskList tasks={todoList} />
+      <AddTask onAddTodoList={handleAddTodoList} />
+      <TaskList list={todoList} />
     </Container>
   );
-};
+}
 
 export default TodoList;

@@ -10,7 +10,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 
-const Task = ({ title }) => {
+function Task() {
   const [done, setDone] = useState(false);
 
   return (

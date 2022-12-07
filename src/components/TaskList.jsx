@@ -2,7 +2,8 @@ import { Card } from "@mui/material";
 import React from "react";
 import Task from "./Task";
 
-const TaskList = ({ tasks }) => {
+
+function TaskList() {
   return (
     <Card>
       {tasks.map((task) => (
@@ -10,6 +11,6 @@ const TaskList = ({ tasks }) => {
       ))}
     </Card>
   );
-};
+}
 
 export default TaskList;
