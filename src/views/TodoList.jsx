@@ -20,10 +20,16 @@ function TodoList() {
     [todoList]
   );
 
+  const handleDeleteTodoList = useCallback((id) => {
+    setTodoList((prev) => {
+      return prev.filter((task) => task.id !== id);
+    });
+  });
+
   return (
     <Container maxWidth="sm">
       <AddTask onAddTodoList={handleAddTodoList} />
-      <TaskList tasks={todoList} />
+      <TaskList tasks={todoList} onDeleteTodoList={handleDeleteTodoList} />
     </Container>
   );
 }

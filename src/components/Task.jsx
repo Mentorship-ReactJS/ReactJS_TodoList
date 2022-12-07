@@ -10,7 +10,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 
-function Task({ title }) {
+function Task({ todo, onDelete }) {
   const [done, setDone] = useState(false);
 
   return (
@@ -33,14 +33,14 @@ function Task({ title }) {
       >
         <Checkbox onChange={() => setDone(!done)} />
         <Typography variant="h5" sx={{ textTransform: "capitalize" }}>
-          {title}
+          {todo.title}
         </Typography>
       </Box>
       <Box>
         <IconButton aria-label="Example">
           <MoreVertIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => onDelete(todo.id)}>
           <DeleteIcon />
         </IconButton>
         <IconButton>
