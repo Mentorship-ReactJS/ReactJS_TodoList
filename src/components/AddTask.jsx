@@ -4,11 +4,14 @@ import { useCallback, useState } from "react";
 function AddTask({ onAddTodoList }) {
   const [title, setTitle] = useState("");
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
-    onAddTodoList(title);
-    setTitle("");
-  }, []);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      onAddTodoList(title);
+      setTitle("");
+    },
+    [title]
+  );
 
   return (
     <form onSubmit={handleSubmit}>

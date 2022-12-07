@@ -2,8 +2,10 @@ import { Card } from "@mui/material";
 import React from "react";
 import Task from "./Task";
 
+function TaskList({ tasks }) {
 
-function TaskList() {
+  // console.log(tasks)
+
   return (
     <Card>
       {tasks.map((task) => (

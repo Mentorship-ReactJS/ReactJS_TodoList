@@ -10,7 +10,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 
-function Task() {
+function Task({ title }) {
   const [done, setDone] = useState(false);
 
   return (
@@ -49,6 +49,6 @@ function Task() {
       </Box>
     </CardContent>
   );
-};
+}
 
 export default Task;
