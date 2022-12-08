@@ -20,10 +20,22 @@ function TodoList() {
     [todoList]
   );
 
+  const handleChangeTodoList = useCallback((todo) => {
+    setTodoList((prev) => {
+      return prev.map((task) => {
+        if (task.id === todo.id) {
+          return todo
+        } else {
+          return task
+        }
+      });
+    });
+  }, []);
+
   return (
     <Container maxWidth="sm">
       <AddTask onAddTodoList={handleAddTodoList} />
-      <TaskList tasks={todoList} />
+      <TaskList tasks={todoList} onChangeTodoList = {handleChangeTodoList} />
     </Container>
   );
 }
