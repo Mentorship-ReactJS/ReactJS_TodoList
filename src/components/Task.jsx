@@ -11,22 +11,27 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
+import { useCallback } from "react";
 
-function Task({ todo, onChangeTodo }) {
+function Task({ todo, onChangeTask }) {
   const [done, setDone] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
+  const setEditStatus = useCallback(() => {
+    setIsEdit(!isEdit);
+  }, [isEdit]);
+  const onChangeTextBox = useCallback((e) => {
+    onChangeTask({ ...todo, title: e.target.value });
+  }, [todo, onChangeTask])
   return (
     <CardContent>
       {isEdit ? (
         <Box>
           <TextField
             value={todo.title}
-            onChange={(e) => {
-              onChangeTodo({ ...todo, title: e.target.value });
-            }}
+            onChange={onChangeTextBox}
           />
-          <Button variant="onlined" onClick={() => setIsEdit(false)}>
+          <Button variant="onlined" onClick={setEditStatus}>
             Save
           </Button>
         </Box>
@@ -58,7 +63,7 @@ function Task({ todo, onChangeTodo }) {
             <IconButton>
               <DeleteIcon />
             </IconButton>
-            <IconButton onClick={() => setIsEdit(true)}>
+            <IconButton onClick={setEditStatus}>
               <ModeEditIcon />
             </IconButton>
           </Box>

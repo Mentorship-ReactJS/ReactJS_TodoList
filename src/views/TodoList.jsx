@@ -35,7 +35,7 @@ function TodoList() {
   return (
     <Container maxWidth="sm">
       <AddTask onAddTodoList={handleAddTodoList} />
-      <TaskList tasks={todoList} onChangeTodoList = {handleChangeTodoList} />
+      <TaskList tasks={todoList} onUpdateTodoItem = {handleChangeTodoList} />
     </Container>
   );
 }
