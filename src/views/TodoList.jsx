@@ -24,12 +24,12 @@ function TodoList() {
     setTodoList((prev) => {
       return prev.filter((task) => task.id !== id);
     });
-  });
+  }, []);
 
   return (
     <Container maxWidth="sm">
       <AddTask onAddTodoList={handleAddTodoList} />
-      <TaskList tasks={todoList} onDeleteTodoList={handleDeleteTodoList} />
+      <TaskList tasks={todoList} onDeleteTodoItem={handleDeleteTodoList} />
     </Container>
   );
 }
