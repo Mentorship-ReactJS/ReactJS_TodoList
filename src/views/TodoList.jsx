@@ -20,10 +20,21 @@ function TodoList() {
     [todoList]
   );
 
+  const handleCompletedTodoList = useCallback((id) => {
+    setTodoList((prev) => {
+      return prev.map((task) => {
+        if (task.id === id) {
+          return { ...task, done: !task?.done };
+        }
+        return task;
+      });
+    });
+  }, []);
+
   return (
     <Container maxWidth="sm">
       <AddTask onAddTodoList={handleAddTodoList} />
-      <TaskList tasks={todoList} />
+      <TaskList tasks={todoList} onCompleted={handleCompletedTodoList} />
     </Container>
   );
 }

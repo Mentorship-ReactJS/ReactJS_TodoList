@@ -8,10 +8,12 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useState } from "react";
+import { useCallback } from "react";
 
-function Task({ title }) {
-  const [done, setDone] = useState(false);
+function Task({ task, onCompletedTask }) {
+  const maskAsDone = useCallback(() => {
+    onCompletedTask(task?.id);
+  }, [task, onCompletedTask]);
 
   return (
     <CardContent
@@ -31,9 +33,15 @@ function Task({ title }) {
           alignItems: "center",
         }}
       >
-        <Checkbox onChange={() => setDone(!done)} />
-        <Typography variant="h5" sx={{ textTransform: "capitalize" }}>
-          {title}
+        <Checkbox onChange={maskAsDone} />
+        <Typography
+          variant="h5"
+          sx={{
+            textTransform: "capitalize",
+            textDecoration: task.done && "line-through",
+          }}
+        >
+          {task.title}
         </Typography>
       </Box>
       <Box>
