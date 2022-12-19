@@ -8,11 +8,12 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useState } from "react";
 import { useCallback } from "react";
 
-function Task({ todo, onDelete }) {
-  const [done, setDone] = useState(false);
+function Task({ todo, onCompletedTask, onDelete }) {
+  const maskAsDone = useCallback(() => {
+    onCompletedTask(todo?.id);
+  }, [todo, onCompletedTask]);
 
   const onDeleteTask = useCallback(() => {
     onDelete(todo.id);
@@ -36,8 +37,14 @@ function Task({ todo, onDelete }) {
           alignItems: "center",
         }}
       >
-        <Checkbox onChange={() => setDone(!done)} />
-        <Typography variant="h5" sx={{ textTransform: "capitalize" }}>
+        <Checkbox onChange={maskAsDone} />
+        <Typography
+          variant="h5"
+          sx={{
+            textTransform: "capitalize",
+            textDecoration: todo?.done && "line-through",
+          }}
+        >
           {todo.title}
         </Typography>
       </Box>

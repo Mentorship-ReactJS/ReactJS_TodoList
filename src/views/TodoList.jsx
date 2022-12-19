@@ -44,11 +44,26 @@ function TodoList() {
     });
   }, []);
 
+  const handleCompletedTodoList = useCallback((id) => {
+    setTodoList((prev) => {
+      return prev.map((task) => {
+        if (task.id === id) {
+          return { ...task, done: !task?.done };
+        }
+        return task;
+      });
+    });
+  }, []);
+
   return (
     <Container maxWidth="sm">
       <AddTask onAddTodoList={handleAddTodoList} />
       <Statusbar onChangeStatus={handleChangFitterStatus} />
-      <TaskList tasks={filteredTodos} onDeleteTodoItem={handleDeleteTodoList} />
+      <TaskList
+        tasks={filteredTodos}
+        onDeleteTodoItem={handleDeleteTodoList}
+        onCompleted={handleCompletedTodoList}
+      />
     </Container>
   );
 }
