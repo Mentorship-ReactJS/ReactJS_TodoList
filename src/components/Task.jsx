@@ -14,6 +14,7 @@ import { useCallback, useState } from "react";
 
 function Task({ todo, onCompletedTask, onDelete, onTaskChanged }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [newTitle, setNewTitle] = useState(todo.title);
   const maskAsDone = useCallback(() => {
     onCompletedTask(todo?.id);
   }, [todo, onCompletedTask]);
@@ -25,19 +26,45 @@ function Task({ todo, onCompletedTask, onDelete, onTaskChanged }) {
   const setEditStatus = useCallback(() => {
     setIsEditing(!isEditing);
   }, [isEditing]);
-  const handleInputChanged = useCallback(
-    (e) => {
-      onTaskChanged({ ...todo, title: e.target.value });
-    },
-    [todo, onTaskChanged]
-  );
+
+  const hanldeSaveChanged = useCallback(() => {
+    onTaskChanged(todo.id, newTitle);
+    setEditStatus();
+  }, [todo, onTaskChanged, newTitle, setEditStatus]);
+
+  const hanldeCancleChanged = useCallback(() => {
+    setNewTitle(todo.title);
+    setEditStatus();
+  }, [todo, setEditStatus]);
+
+  const handleInputChanged = useCallback((e) => {
+    setNewTitle(e.target.value);
+  }, []);
   return (
     <CardContent>
       {isEditing ? (
-        <Box>
-          <TextField value={todo.title} onChange={handleInputChanged} />
-          <Button variant="onlined" onClick={setEditStatus}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <TextField value={newTitle} onChange={handleInputChanged} />
+          <Button
+            variant="contained"
+            color="success"
+            onClick={hanldeSaveChanged}
+          >
             Save
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={hanldeCancleChanged}
+          >
+            Cancel
           </Button>
         </Box>
       ) : (
