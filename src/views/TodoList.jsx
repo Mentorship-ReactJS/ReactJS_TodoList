@@ -24,10 +24,9 @@ function TodoList() {
     setTodoList((prev) => {
       return prev.map((task) => {
         if (task.id === todo.id) {
-          return todo
-        } else {
-          return task
+          return todo;
         }
+        return task;
       });
     });
   }, []);
@@ -35,7 +34,7 @@ function TodoList() {
   return (
     <Container maxWidth="sm">
       <AddTask onAddTodoList={handleAddTodoList} />
-      <TaskList tasks={todoList} onUpdateTodoItem = {handleChangeTodoList} />
+      <TaskList tasks={todoList} onUpdateTodoItem={handleChangeTodoList} />
     </Container>
   );
 }

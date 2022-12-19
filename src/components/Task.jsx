@@ -13,24 +13,24 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 import { useCallback } from "react";
 
-function Task({ todo, onChangeTask }) {
+function Task({ todo, onTaskChanged }) {
   const [done, setDone] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const setEditStatus = useCallback(() => {
-    setIsEdit(!isEdit);
-  }, [isEdit]);
-  const onChangeTextBox = useCallback((e) => {
-    onChangeTask({ ...todo, title: e.target.value });
-  }, [todo, onChangeTask])
+    setIsEditing(!isEditing);
+  }, [isEditing]);
+  const handleInputChanged = useCallback(
+    (e) => {
+      onTaskChanged({ ...todo, title: e.target.value });
+    },
+    [todo, onTaskChanged]
+  );
   return (
     <CardContent>
-      {isEdit ? (
+      {isEditing ? (
         <Box>
-          <TextField
-            value={todo.title}
-            onChange={onChangeTextBox}
-          />
+          <TextField value={todo.title} onChange={handleInputChanged} />
           <Button variant="onlined" onClick={setEditStatus}>
             Save
           </Button>

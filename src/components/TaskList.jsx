@@ -6,7 +6,7 @@ function TaskList({ tasks, onUpdateTodoItem }) {
   return (
     <Card>
       {tasks.map((task) => (
-        <Task key={task.id} todo={task} onChangeTask={onUpdateTodoItem} />
+        <Task key={task.id} todo={task} onTaskChanged={onUpdateTodoItem} />
       ))}
     </Card>
   );
