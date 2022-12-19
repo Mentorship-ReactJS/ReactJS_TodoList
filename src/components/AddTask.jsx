@@ -10,7 +10,7 @@ function AddTask({ onAddTodoList }) {
       onAddTodoList(title);
       setTitle("");
     },
-    [title]
+    [title, onAddTodoList]
   );
 
   return (

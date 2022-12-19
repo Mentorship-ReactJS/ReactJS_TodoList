@@ -24,7 +24,7 @@ function TodoList() {
   );
 
   const filteredTodos = useMemo(() => {
-    todoList.filter((task) => {
+    return todoList.filter((task) => {
       if (fitterStatus === "all") {
         return true;
       } else if (fitterStatus === "completed") {
@@ -36,7 +36,8 @@ function TodoList() {
 
   const handleChangFitterStatus = useCallback((status) => {
     setFitterStatus(status);
-      }, []);
+  }, []);
+
   const handleDeleteTodoList = useCallback((id) => {
     setTodoList((prev) => {
       return prev.filter((task) => task.id !== id);
@@ -47,9 +48,7 @@ function TodoList() {
     <Container maxWidth="sm">
       <AddTask onAddTodoList={handleAddTodoList} />
       <Statusbar onChangeStatus={handleChangFitterStatus} />
-      <TaskList tasks={filteredTodos} />
       <TaskList tasks={filteredTodos} onDeleteTodoItem={handleDeleteTodoList} />
-
     </Container>
   );
 }
