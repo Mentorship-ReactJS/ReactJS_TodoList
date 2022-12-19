@@ -1,5 +1,5 @@
 import { Card } from "@mui/material";
-import React from "react";
+import React, { memo } from "react";
 import Task from "./Task";
 
 function TaskList({ tasks, onDeleteTodoItem, onCompleted, onUpdateTodoItem }) {
@@ -18,4 +18,4 @@ function TaskList({ tasks, onDeleteTodoItem, onCompleted, onUpdateTodoItem }) {
   );
 }
 
-export default TaskList;
+export default memo(TaskList);

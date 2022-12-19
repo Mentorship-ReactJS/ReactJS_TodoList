@@ -10,7 +10,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useCallback, useState } from "react";
+import { memo, useCallback, useState } from "react";
 
 function Task({ todo, onCompletedTask, onDelete, onTaskChanged }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -113,4 +113,4 @@ function Task({ todo, onCompletedTask, onDelete, onTaskChanged }) {
   );
 }
 
-export default Task;
+export default memo(Task);

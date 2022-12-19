@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import { useCallback, useState } from "react";
+import { memo, useCallback, useState } from "react";
 
 function AddTask({ onAddTodoList }) {
   const [title, setTitle] = useState("");
@@ -29,4 +29,4 @@ function AddTask({ onAddTodoList }) {
   );
 }
 
-export default AddTask;
+export default memo(AddTask);
