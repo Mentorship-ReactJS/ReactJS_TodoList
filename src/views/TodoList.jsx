@@ -5,7 +5,7 @@ import { useState, useCallback } from "react";
 import Statusbar from "../components/StatusBar";
 import { useMemo } from "react";
 
-function TodoList() {
+const TodoList = () => {
   const [todoList, setTodoList] = useState([]);
   const [fitterStatus, setFitterStatus] = useState("all");
 
@@ -78,6 +78,6 @@ function TodoList() {
       />
     </Container>
   );
-}
+};
 
 export default TodoList;

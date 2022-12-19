@@ -12,7 +12,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { memo, useCallback, useState } from "react";
 
-function Task({ todo, onCompletedTask, onDelete, onTaskChanged }) {
+const Task = ({ todo, onCompletedTask, onDelete, onTaskChanged }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(todo.title);
   const maskAsDone = useCallback(() => {
@@ -111,6 +111,6 @@ function Task({ todo, onCompletedTask, onDelete, onTaskChanged }) {
       )}
     </CardContent>
   );
-}
+};
 
 export default memo(Task);

@@ -2,7 +2,12 @@ import { Card } from "@mui/material";
 import React, { memo } from "react";
 import Task from "./Task";
 
-function TaskList({ tasks, onDeleteTodoItem, onCompleted, onUpdateTodoItem }) {
+const TaskList = ({
+  tasks,
+  onDeleteTodoItem,
+  onCompleted,
+  onUpdateTodoItem,
+}) => {
   return (
     <Card>
       {tasks?.map((task) => (
@@ -16,6 +21,6 @@ function TaskList({ tasks, onDeleteTodoItem, onCompleted, onUpdateTodoItem }) {
       ))}
     </Card>
   );
-}
+};
 
 export default memo(TaskList);

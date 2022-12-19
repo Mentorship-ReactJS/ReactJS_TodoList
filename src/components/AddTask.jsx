@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import { memo, useCallback, useState } from "react";
 
-function AddTask({ onAddTodoList }) {
+const AddTask = ({ onAddTodoList }) => {
   const [title, setTitle] = useState("");
 
   const handleSubmit = useCallback(
@@ -27,6 +27,6 @@ function AddTask({ onAddTodoList }) {
       />
     </form>
   );
-}
+};
 
 export default memo(AddTask);
