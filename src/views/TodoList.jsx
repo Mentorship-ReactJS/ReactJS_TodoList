@@ -36,6 +36,11 @@ function TodoList() {
 
   const handleChangFitterStatus = useCallback((status) => {
     setFitterStatus(status);
+      }, []);
+  const handleDeleteTodoList = useCallback((id) => {
+    setTodoList((prev) => {
+      return prev.filter((task) => task.id !== id);
+    });
   }, []);
 
   return (
@@ -43,6 +48,8 @@ function TodoList() {
       <AddTask onAddTodoList={handleAddTodoList} />
       <Statusbar onChangeStatus={handleChangFitterStatus} />
       <TaskList tasks={filteredTodos} />
+      <TaskList tasks={filteredTodos} onDeleteTodoItem={handleDeleteTodoList} />
+
     </Container>
   );
 }

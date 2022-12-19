@@ -9,9 +9,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
+import { useCallback } from "react";
 
-function Task({ title }) {
+function Task({ todo, onDelete }) {
   const [done, setDone] = useState(false);
+
+  const onDeleteTask = useCallback(() => {
+    onDelete(todo.id);
+  }, [todo, onDelete]);
 
   return (
     <CardContent
@@ -33,14 +38,14 @@ function Task({ title }) {
       >
         <Checkbox onChange={() => setDone(!done)} />
         <Typography variant="h5" sx={{ textTransform: "capitalize" }}>
-          {title}
+          {todo.title}
         </Typography>
       </Box>
       <Box>
         <IconButton aria-label="Example">
           <MoreVertIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={onDeleteTask}>
           <DeleteIcon />
         </IconButton>
         <IconButton>
