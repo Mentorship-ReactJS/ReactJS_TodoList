@@ -55,6 +55,17 @@ function TodoList() {
     });
   }, []);
 
+  const handleChangeTodoList = useCallback((todo) => {
+    setTodoList((prev) => {
+      return prev.map((task) => {
+        if (task.id === todo.id) {
+          return todo;
+        }
+        return task;
+      });
+    });
+  }, []);
+
   return (
     <Container maxWidth="sm">
       <AddTask onAddTodoList={handleAddTodoList} />
@@ -63,6 +74,7 @@ function TodoList() {
         tasks={filteredTodos}
         onDeleteTodoItem={handleDeleteTodoList}
         onCompleted={handleCompletedTodoList}
+        onUpdateTodoItem={handleChangeTodoList}
       />
     </Container>
   );
