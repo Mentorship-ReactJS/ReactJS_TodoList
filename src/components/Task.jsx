@@ -58,7 +58,7 @@ function Task({ todo, onCompletedTask, onDelete, onTaskChanged }) {
               alignItems: "center",
             }}
           >
-            <Checkbox onChange={maskAsDone} />
+            <Checkbox checked={todo.done} onChange={maskAsDone} />
             <Typography
               variant="h5"
               sx={{
