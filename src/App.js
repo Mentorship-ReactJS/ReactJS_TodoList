@@ -1,4 +1,4 @@
-
+import Provider from "./store/Provider";
 import TodoList from "./views/TodoList";
 
 /**
@@ -18,22 +18,22 @@ import TodoList from "./views/TodoList";
           id: 1,
           name: 'Learn ReactJS',
           status: 'pending',
-          createdAt: // timestamp
-          updatedAt: // timestamp
+          createdAt: '', // timestamp
+          updatedAt: '', // timestamp
       },
       2: {
           id: 2,
           name: 'Learn TypeScript',
           status: 'inprogress',
-          createdAt: // timestamp
-          updatedAt: // timestamp
+          createdAt: '', // timestamp
+          updatedAt: '', // timestamp
       },
       3: {
           id: 3,
           name: 'Learn Javascript',
           status: 'done',
-          createdAt: // timestamp
-          updatedAt: // timestamp
+          createdAt: '', // timestamp
+          updatedAt: '', // timestamp
       }
     },
     allIds: [1, 2, 3]
@@ -44,7 +44,9 @@ import TodoList from "./views/TodoList";
 function App() {
   return (
     <>
-      <TodoList />
+      <Provider>
+        <TodoList />
+      </Provider>
     </>
   );
 }

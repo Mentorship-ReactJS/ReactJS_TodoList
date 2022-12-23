@@ -1,24 +1,16 @@
 import { Card } from "@mui/material";
 import React, { memo } from "react";
 import Task from "./Task";
+import useStore from "./../store/customHook";
 
-const TaskList = ({
-  tasks,
-  onDeleteTodoItem,
-  onCompleted,
-  onUpdateTodoItem,
-}) => {
+const TaskList = ({ onDeleteTodoItem, onCompleted, onUpdateTodoItem }) => {
+  const [todoList] = useStore();
+
   return (
     <Card>
-      {tasks?.map((task) => (
-        <Task
-          key={task.id}
-          todo={task}
-          onDelete={onDeleteTodoItem}
-          onCompletedTask={onCompleted}
-          onTaskChanged={onUpdateTodoItem}
-        />
-      ))}
+      {todoList.allIds?.map((taskId) => {
+        return <Task key={taskId} taskId={taskId} />;
+      })}
     </Card>
   );
 };

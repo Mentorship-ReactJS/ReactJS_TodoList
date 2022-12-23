@@ -11,31 +11,42 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { memo, useCallback, useState } from "react";
+import useStore from "./../store/customHook";
 
-const Task = ({ todo, onCompletedTask, onDelete, onTaskChanged }) => {
+const Task = ({ taskId }) => {
+  const [taskList, dispatch] = useStore();
+
+  const task = taskList.byId[taskId];
+
   const [isEditing, setIsEditing] = useState(false);
-  const [newTitle, setNewTitle] = useState(todo.title);
+  const [newTitle, setNewTitle] = useState(task.name);
+
   const maskAsDone = useCallback(() => {
-    onCompletedTask(todo?.id);
-  }, [todo, onCompletedTask]);
+    dispatch({ type: "completed", taskId: task.id });
+  }, [task, dispatch]);
 
   const onDeleteTask = useCallback(() => {
-    onDelete(todo.id);
-  }, [todo, onDelete]);
+    dispatch({ type: "delete", taskId: task.id });
+  }, [task, dispatch]);
 
   const setEditStatus = useCallback(() => {
     setIsEditing(!isEditing);
   }, [isEditing]);
 
   const hanldeSaveChanged = useCallback(() => {
-    onTaskChanged(todo.id, newTitle);
-    setEditStatus();
-  }, [todo, onTaskChanged, newTitle, setEditStatus]);
+    if (newTitle) {
+      dispatch({
+        type: "edit",
+        payload: { taskId: task.id, name: newTitle },
+      });
+      setEditStatus();
+    }
+  }, [task, dispatch, newTitle, setEditStatus]);
 
   const hanldeCancleChanged = useCallback(() => {
-    setNewTitle(todo.title);
+    setNewTitle(task.title);
     setEditStatus();
-  }, [todo, setEditStatus]);
+  }, [task, setEditStatus]);
 
   const handleInputChanged = useCallback((e) => {
     setNewTitle(e.target.value);
@@ -85,15 +96,15 @@ const Task = ({ todo, onCompletedTask, onDelete, onTaskChanged }) => {
               alignItems: "center",
             }}
           >
-            <Checkbox checked={todo.done} onChange={maskAsDone} />
+            <Checkbox checked={task.done} onChange={maskAsDone} />
             <Typography
               variant="h5"
               sx={{
                 textTransform: "capitalize",
-                textDecoration: todo?.done && "line-through",
+                textDecoration: task?.done && "line-through",
               }}
             >
-              {todo.title}
+              {task.name}
             </Typography>
           </Box>
           <Box>
