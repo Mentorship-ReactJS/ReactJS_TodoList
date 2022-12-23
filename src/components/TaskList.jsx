@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import Task from "./Task";
 import useStore from "./../store/customHook";
 
-const TaskList = ({ onDeleteTodoItem, onCompleted, onUpdateTodoItem }) => {
+const TaskList = () => {
   const [todoList] = useStore();
 
   return (

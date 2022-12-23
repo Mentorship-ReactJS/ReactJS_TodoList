@@ -44,7 +44,7 @@ const Task = ({ taskId }) => {
   }, [task, dispatch, newTitle, setEditStatus]);
 
   const hanldeCancleChanged = useCallback(() => {
-    setNewTitle(task.title);
+    setNewTitle(task.name);
     setEditStatus();
   }, [task, setEditStatus]);
 
