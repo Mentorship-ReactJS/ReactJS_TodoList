@@ -10,34 +10,72 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useCallback, useState } from "react";
+import { memo, useCallback, useState } from "react";
+import useStore from "./../store/customHook";
 
-function Task({ todo, onCompletedTask, onDelete, onTaskChanged }) {
+const Task = ({ taskId }) => {
+  const [taskList, dispatch] = useStore();
+
+  const task = taskList.byId[taskId];
+
   const [isEditing, setIsEditing] = useState(false);
+  const [newTitle, setNewTitle] = useState(task.name);
+
   const maskAsDone = useCallback(() => {
-    onCompletedTask(todo?.id);
-  }, [todo, onCompletedTask]);
+    dispatch({ type: "completed", taskId: task.id });
+  }, [task, dispatch]);
 
   const onDeleteTask = useCallback(() => {
-    onDelete(todo.id);
-  }, [todo, onDelete]);
+    dispatch({ type: "delete", taskId: task.id });
+  }, [task, dispatch]);
 
   const setEditStatus = useCallback(() => {
     setIsEditing(!isEditing);
   }, [isEditing]);
-  const handleInputChanged = useCallback(
-    (e) => {
-      onTaskChanged({ ...todo, title: e.target.value });
-    },
-    [todo, onTaskChanged]
-  );
+
+  const hanldeSaveChanged = useCallback(() => {
+    if (newTitle) {
+      dispatch({
+        type: "edit",
+        payload: { taskId: task.id, name: newTitle },
+      });
+      setEditStatus();
+    }
+  }, [task, dispatch, newTitle, setEditStatus]);
+
+  const hanldeCancleChanged = useCallback(() => {
+    setNewTitle(task.name);
+    setEditStatus();
+  }, [task, setEditStatus]);
+
+  const handleInputChanged = useCallback((e) => {
+    setNewTitle(e.target.value);
+  }, []);
   return (
     <CardContent>
       {isEditing ? (
-        <Box>
-          <TextField value={todo.title} onChange={handleInputChanged} />
-          <Button variant="onlined" onClick={setEditStatus}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <TextField value={newTitle} onChange={handleInputChanged} />
+          <Button
+            variant="contained"
+            color="success"
+            onClick={hanldeSaveChanged}
+          >
             Save
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={hanldeCancleChanged}
+          >
+            Cancel
           </Button>
         </Box>
       ) : (
@@ -58,15 +96,15 @@ function Task({ todo, onCompletedTask, onDelete, onTaskChanged }) {
               alignItems: "center",
             }}
           >
-            <Checkbox checked={todo.done} onChange={maskAsDone} />
+            <Checkbox checked={task.done} onChange={maskAsDone} />
             <Typography
               variant="h5"
               sx={{
                 textTransform: "capitalize",
-                textDecoration: todo?.done && "line-through",
+                textDecoration: task?.done && "line-through",
               }}
             >
-              {todo.title}
+              {task.name}
             </Typography>
           </Box>
           <Box>
@@ -84,6 +122,6 @@ function Task({ todo, onCompletedTask, onDelete, onTaskChanged }) {
       )}
     </CardContent>
   );
-}
+};
 
-export default Task;
+export default memo(Task);

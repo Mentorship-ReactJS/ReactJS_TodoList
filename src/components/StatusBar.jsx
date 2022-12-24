@@ -2,7 +2,7 @@ import { Box, Button } from "@mui/material";
 import React from "react";
 import StatusButton from "./StatusButton";
 
-function Statusbar({ onChangeStatus }) {
+function Statusbar() {
   const statusList = ["all", "pendding", "completed"];
   return (
     <Box
@@ -21,7 +21,7 @@ function Statusbar({ onChangeStatus }) {
         }}
       >
         {statusList.map((ele, index) => (
-          <StatusButton key={index} title={ele} onChange = {onChangeStatus} />
+          <StatusButton key={index} title={ele} />
         ))}
       </Box>
       <Box>
