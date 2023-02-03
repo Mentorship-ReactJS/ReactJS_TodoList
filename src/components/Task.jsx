@@ -10,47 +10,22 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { memo, useCallback, useState } from "react";
-import useStore from "./../store/customHook";
+import { memo } from "react";
+import useTask from "../store/useTask";
 
 const Task = ({ taskId }) => {
-  const [taskList, dispatch] = useStore();
+  const {
+    task,
+    isEditing,
+    newTitle,
+    setEditStatus,
+    maskAsDone,
+    onDeleteTask,
+    hanldeSaveChanged,
+    hanldeCancleChanged,
+    handleInputChanged,
+  } = useTask(taskId);
 
-  const task = taskList.byId[taskId];
-
-  const [isEditing, setIsEditing] = useState(false);
-  const [newTitle, setNewTitle] = useState(task.name);
-
-  const maskAsDone = useCallback(() => {
-    dispatch({ type: "completed", taskId: task.id });
-  }, [task, dispatch]);
-
-  const onDeleteTask = useCallback(() => {
-    dispatch({ type: "delete", taskId: task.id });
-  }, [task, dispatch]);
-
-  const setEditStatus = useCallback(() => {
-    setIsEditing(!isEditing);
-  }, [isEditing]);
-
-  const hanldeSaveChanged = useCallback(() => {
-    if (newTitle) {
-      dispatch({
-        type: "edit",
-        payload: { taskId: task.id, name: newTitle },
-      });
-      setEditStatus();
-    }
-  }, [task, dispatch, newTitle, setEditStatus]);
-
-  const hanldeCancleChanged = useCallback(() => {
-    setNewTitle(task.name);
-    setEditStatus();
-  }, [task, setEditStatus]);
-
-  const handleInputChanged = useCallback((e) => {
-    setNewTitle(e.target.value);
-  }, []);
   return (
     <CardContent>
       {isEditing ? (

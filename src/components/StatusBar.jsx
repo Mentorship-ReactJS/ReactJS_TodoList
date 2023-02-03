@@ -1,8 +1,15 @@
 import { Box, Button } from "@mui/material";
-import React from "react";
+import React, { useCallback } from "react";
 import StatusButton from "./StatusButton";
+import useStore from "./../store/useStore";
 
 function Statusbar() {
+  const [todoList, dispatch] = useStore();
+
+  const handleClearAllTask = useCallback(() => {
+    dispatch({ type: "clearAll" });
+  }, [dispatch]);
+
   const statusList = ["all", "pendding", "completed"];
   return (
     <Box
@@ -25,7 +32,9 @@ function Statusbar() {
         ))}
       </Box>
       <Box>
-        <Button variant="contained">Clear all</Button>
+        <Button variant="contained" onClick={handleClearAllTask}>
+          Clear all
+        </Button>
       </Box>
     </Box>
   );

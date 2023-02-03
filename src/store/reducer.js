@@ -55,6 +55,13 @@ const reducer = (state, action) => {
         },
       };
     }
+
+    case "clearAll": {
+      return {
+        byId: {},
+        allIds: [],
+      };
+    }
     default: {
       throw new Error("Unknown action: " + action.type);
     }
