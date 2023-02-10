@@ -1,11 +1,9 @@
 import { TextField } from "@mui/material";
 import { memo, useCallback, useState } from "react";
-import useStore from "./../store/useStore";
-
+import { useDispatch } from "react-redux";
 const AddTask = () => {
-  const [todoList, dispatch] = useStore();
+  const dispatch = useDispatch()
   const [title, setTitle] = useState("");
-  // const [taskId, setTaskId] = useState(0);
 
   const generateUUID = () => {
     let d = new Date().getTime;

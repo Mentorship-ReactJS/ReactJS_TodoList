@@ -1,10 +1,10 @@
 import { Box, Button } from "@mui/material";
 import React, { useCallback } from "react";
 import StatusButton from "./StatusButton";
-import useStore from "./../store/useStore";
+import { useDispatch } from 'react-redux';
 
 function Statusbar() {
-  const [todoList, dispatch] = useStore();
+  const dispatch = useDispatch()
 
   const handleClearAllTask = useCallback(() => {
     dispatch({ type: "clearAll" });

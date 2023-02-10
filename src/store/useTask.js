@@ -1,11 +1,10 @@
 import { useCallback, useState } from "react";
-import useStore from "./useStore";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 const useTask = (taskId) => {
-  const [taskList, dispatch] = useStore();
-
-  const task = taskList.byId[taskId];
-
-  console.log(task);
+  const taskList = useSelector((state) => state.byId);
+  const dispatch = useDispatch();
+  const task = taskList[taskId];
 
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.name);

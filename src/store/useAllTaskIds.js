@@ -1,10 +1,8 @@
-import useStore from "./useStore";
+import { useSelector } from "react-redux";
 const useAllTaskId = () => {
-  const [taskList] = useStore();
+  const taskList = useSelector((state) => state.allIds);
 
-  const allIdTask = taskList.allIds;
-
-  return allIdTask;
+  return taskList;
 };
 
 export default useAllTaskId;

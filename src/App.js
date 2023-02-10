@@ -1,5 +1,6 @@
-import Provider from "./store/Provider";
+import {Provider} from "react-redux";
 import TodoList from "./views/TodoList";
+import { store } from "./redux/store";
 
 /**
  * Arrow function
@@ -44,7 +45,7 @@ import TodoList from "./views/TodoList";
 function App() {
   return (
     <>
-      <Provider>
+      <Provider store={store}>
         <TodoList />
       </Provider>
     </>

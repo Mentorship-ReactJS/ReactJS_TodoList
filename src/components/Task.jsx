@@ -26,6 +26,7 @@ const Task = ({ taskId }) => {
     handleInputChanged,
   } = useTask(taskId);
 
+
   return (
     <CardContent>
       {isEditing ? (

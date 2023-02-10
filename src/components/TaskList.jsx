@@ -5,7 +5,7 @@ import useAllTaskId from "./../store/useAllTaskIds";
 
 const TaskList = () => {
   const allIds = useAllTaskId();
-
+  console.log("task list", allIds);
 
   return (
     <Card>
@@ -17,6 +17,3 @@ const TaskList = () => {
 };
 
 export default memo(TaskList);
-
-// UseTask (taskId) => Return task byId
-// useAllTaskId => return taskId
