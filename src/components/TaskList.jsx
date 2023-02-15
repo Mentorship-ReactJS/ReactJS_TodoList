@@ -1,21 +1,22 @@
 import { Card } from "@mui/material";
-import React from "react";
+import React, { memo } from "react";
 import Task from "./Task";
+import useAllTaskId from "./../store/useAllTaskIds";
 
-function TaskList({ tasks, onDeleteTodoItem, onCompleted, onUpdateTodoItem }) {
+const TaskList = () => {
+  const allIds = useAllTaskId();
+
+
   return (
     <Card>
-      {tasks?.map((task) => (
-        <Task
-          key={task.id}
-          todo={task}
-          onDelete={onDeleteTodoItem}
-          onCompletedTask={onCompleted}
-          onTaskChanged={onUpdateTodoItem}
-        />
-      ))}
+      {allIds?.map((taskId) => {
+        return <Task key={taskId} taskId={taskId} />;
+      })}
     </Card>
   );
-}
+};
 
-export default TaskList;
+export default memo(TaskList);
+
+// UseTask (taskId) => Return task byId
+// useAllTaskId => return taskId

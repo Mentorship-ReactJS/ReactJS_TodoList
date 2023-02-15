@@ -1,18 +1,8 @@
 import { Button } from "@mui/material";
-import React, { useCallback } from "react";
+import React from "react";
 
-function StatusButton({ title, onChange }) {
-  const onChangeStatus = useCallback(
-    () => onChange(title),
-
-    [onChange, title]
-  );
-
-  return (
-    <Button variant="text" onClick={onChangeStatus}>
-      {title}
-    </Button>
-  );
+function StatusButton({ title }) {
+  return <Button variant="text">{title}</Button>;
 }
 
 export default StatusButton;
